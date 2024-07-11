@@ -1,0 +1,23 @@
+{
+  "name": "dnadesign/silverstripe-browser-update",
+  "description": "Browser update for Silverstripe CMS.",
+  "license": "MIT",
+  "type": "silverstripe-vendormodule",
+  "keywords": [
+      "silverstripe",
+      "browser-update"
+  ],
+  "require": {
+      "php": "^8.1",
+      "silverstripe/framework": "^4.0 || ^5.0",
+      "silverstripe/siteconfig": "^4.0 || ^5.0",
+      "symbiote/silverstripe-gridfieldextensions": "^3.0 || ^4.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+      "psr-4": {
+          "DNADesign\\BrowserUpdate\\": "src"
+      }
+  }
+}
