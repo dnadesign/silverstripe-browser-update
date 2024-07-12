@@ -99,7 +99,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
      * @var string[]
      */
     private static array $summary_fields = [
-        'Title' => 'Title',
+        'Name' => 'Name',
     ];
 
     private static string $browser_update_api_version = '2024.07';
@@ -125,7 +125,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
         ]);
 
         $fields->addFieldsToTab('Root.Main', [
-            TextField::create('Title', 'Title')
+            TextField::create('Name', 'Name')
                 ->setDescription('For CMS reference only.'),
             self::getMessageCompositeField(),
             $gridField,

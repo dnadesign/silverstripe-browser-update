@@ -25,9 +25,9 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
 
     private static string $table_name = 'BrowserUpdate_BrowserVersion';
 
-    private static string $singular_name = 'Browser update browser version';
+    private static string $singular_name = 'Browser version';
 
-    private static string $plural_name = 'Browser update browser versions';
+    private static string $plural_name = 'Browser versions';
 
     /**
      * @var string[]
@@ -54,7 +54,7 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
      * @var string[]
      */
     private static array $summary_fields = [
-        'getTitle' => 'Title',
+        'getTitle' => 'Name',
         'Version' => 'Version',
     ];
 
