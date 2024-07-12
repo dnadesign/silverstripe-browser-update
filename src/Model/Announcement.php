@@ -12,6 +12,9 @@ use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\HasManyList;
+use SilverStripe\Security\Member;
+use SilverStripe\Security\Permission;
+use SilverStripe\Security\PermissionProvider;
 
 /**
  * @property int $Reminder
@@ -25,7 +28,7 @@ use SilverStripe\ORM\HasManyList;
  * @property int $Sort
  * @method HasManyList<BrowserVersion> BrowserVersions()
  */
-class Announcement extends DataObject implements BrowserUpdateInterface
+class Announcement extends DataObject implements BrowserUpdateInterface, PermissionProvider
 {
     use MessageFields;
 
@@ -178,6 +181,81 @@ class Announcement extends DataObject implements BrowserUpdateInterface
         return [
             ...$fields,
             'text' => $text,
+        ];
+    }
+
+    /**
+     * Check View permission
+     *
+     * @param  Member|null $member
+     * @param  mixed $context
+     * @return bool|int
+     */
+    public function canView($member = null, $context = [])
+    {
+        return Permission::checkMember($member, 'BROWSER_UPDATE_VIEW');
+    }
+
+    /**
+     * Check Create permission
+     *
+     * @param  Member|null $member
+     * @param  mixed $context
+     * @return bool|int
+     */
+    public function canCreate($member = null, $context = [])
+    {
+        return Permission::checkMember($member, 'BROWSER_UPDATE_CREATE');
+    }
+
+    /**
+     * Check Edit permission
+     *
+     * @param  Member|null $member
+     * @param  mixed $context
+     * @return bool|int
+     */
+    public function canEdit($member = null, $context = [])
+    {
+        return Permission::checkMember($member, 'BROWSER_UPDATE_EDIT');
+    }
+
+    /**
+     * Check Delete permission
+     *
+     * @param  Member|null $member
+     * @param  mixed $context
+     * @return bool|int
+     */
+    public function canDelete($member = null, $context = [])
+    {
+        return Permission::checkMember($member, 'BROWSER_UPDATE_DELETE');
+    }
+
+    /**
+     * Get an array of supported permissions
+     *
+     * @return array<string, array<string, string>>
+     */
+    public function providePermissions(): array
+    {
+        return [
+            'BROWSER_UPDATE_VIEW' => [
+                'name' => 'View announcements admin',
+                'category' => 'Browser update announcement',
+            ],
+            'BROWSER_UPDATE_CREATE' => [
+                'name' => 'Create announcements',
+                'category' => 'Browser update announcement',
+            ],
+            'BROWSER_UPDATE_EDIT' => [
+                'name' => 'Edit announcements',
+                'category' => 'Browser update announcement',
+            ],
+            'BROWSER_UPDATE_DELETE' => [
+                'name' => 'Delete announcements',
+                'category' => 'Browser update announcement',
+            ],
         ];
     }
 }

@@ -22,3 +22,27 @@ parameters:
         - '#Dynamic call to static method SilverStripe\\Dev\\FunctionalTest#'
         - '#Dynamic call to static method SilverStripe\\Dev\\SapphireTest#'
       reportUnmatched: false
+    -
+      message: "#^Parameter \\#1 \\$member of static method SilverStripe\\\\Security\\\\Permission\\:\\:checkMember\\(\\) expects int\\|SilverStripe\\\\Security\\\\Member, SilverStripe\\\\Security\\\\Member\\|null given\\.$#"
+      count: 4
+      path: src/Model/Announcement.php
+
+    -
+      message: "#^Return type \\(bool\\|int\\) of method DNADesign\\\\BrowserUpdate\\\\Model\\\\Announcement\\:\\:canCreate\\(\\) should be covariant with return type \\(bool\\) of method SilverStripe\\\\ORM\\\\DataObject\\:\\:canCreate\\(\\)$#"
+      count: 1
+      path: src/Model/Announcement.php
+
+    -
+      message: "#^Return type \\(bool\\|int\\) of method DNADesign\\\\BrowserUpdate\\\\Model\\\\Announcement\\:\\:canDelete\\(\\) should be covariant with return type \\(bool\\) of method SilverStripe\\\\ORM\\\\DataObject\\:\\:canDelete\\(\\)$#"
+      count: 1
+      path: src/Model/Announcement.php
+
+    -
+      message: "#^Return type \\(bool\\|int\\) of method DNADesign\\\\BrowserUpdate\\\\Model\\\\Announcement\\:\\:canEdit\\(\\) should be covariant with return type \\(bool\\) of method SilverStripe\\\\ORM\\\\DataObject\\:\\:canEdit\\(\\)$#"
+      count: 1
+      path: src/Model/Announcement.php
+
+    -
+      message: "#^Return type \\(bool\\|int\\) of method DNADesign\\\\BrowserUpdate\\\\Model\\\\Announcement\\:\\:canView\\(\\) should be covariant with return type \\(bool\\) of method SilverStripe\\\\ORM\\\\DataObject\\:\\:canView\\(\\)$#"
+      count: 1
+      path: src/Model/Announcement.php
