@@ -9,14 +9,6 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
 use function array_filter;
 
-/**
- * @property string $Msg
- * @property string $Msgmore
- * @property string $Bupdate
- * @property string $Bignore
- * @property string $Remind
- * @property string $Bnever
- */
 trait MessageFields
 {
     /**

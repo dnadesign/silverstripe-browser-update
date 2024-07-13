@@ -17,6 +17,13 @@ use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
 
 /**
+ * @property string $Name
+ * @property string $Msg
+ * @property string $Msgmore
+ * @property string $Bupdate
+ * @property string $Bignore
+ * @property string $Remind
+ * @property string $Bnever
  * @property int $Reminder
  * @property int $ReminderClosed
  * @property bool $Test
@@ -61,7 +68,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
     ];
 
     /**
-     * @var array<mixed>
+     * @var mixed[]
      */
     private static array $defaults = [
         'Msg' => 'Your web browser ({brow_name}) is out of date.',

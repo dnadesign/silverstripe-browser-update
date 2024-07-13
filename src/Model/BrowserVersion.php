@@ -16,8 +16,14 @@ use function sprintf;
 /**
  * @property string $Browser
  * @property float $Version
- * @method Announcement Announcement()
+ * @property string $Msg
+ * @property string $Msgmore
+ * @property string $Bupdate
+ * @property string $Bignore
+ * @property string $Remind
+ * @property string $Bnever
  * @property int $AnnouncementID
+ * @method Announcement Announcement()
  */
 class BrowserVersion extends DataObject implements BrowserUpdateInterface
 {
