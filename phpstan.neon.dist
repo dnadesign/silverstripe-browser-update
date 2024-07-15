@@ -46,3 +46,8 @@ parameters:
       message: "#^Return type \\(bool\\|int\\) of method DNADesign\\\\BrowserUpdate\\\\Model\\\\Announcement\\:\\:canView\\(\\) should be covariant with return type \\(bool\\) of method SilverStripe\\\\ORM\\\\DataObject\\:\\:canView\\(\\)$#"
       count: 1
       path: src/Model/Announcement.php
+
+    -
+      message: "#^Access to an undefined property DNADesign\\\\BrowserUpdate\\\\Extension\\\\SiteConfigExtension\\:\\:\\$BrowserAnnouncementID\\.$#"
+      count: 1
+      path: tests/php/View/TemplateProviderTest.php

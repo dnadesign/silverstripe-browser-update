@@ -2,8 +2,9 @@
 
 namespace DNADesign\BrowserUpdate\View;
 
-use DNADesign\BrowserUpdate\Model\Announcement;
+use DNADesign\BrowserUpdate\Extension\SiteConfigExtension;
 use JsonException;
+use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\TemplateGlobalProvider;
 use function json_encode;
 use function sprintf;
@@ -29,9 +30,11 @@ class TemplateProvider implements TemplateGlobalProvider
 
     public static function getBrowserUpdate(): string
     {
-        $announcement = Announcement::get()->sort('Sort')->first();
+        /** @var SiteConfigExtension $siteConfig */
+        $siteConfig = SiteConfig::current_site_config();
+        $announcement = $siteConfig->BrowserAnnouncement();
 
-        if (!$announcement instanceof Announcement) {
+        if (!$announcement->exists()) {
             return '';
         }
 

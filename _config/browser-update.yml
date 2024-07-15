@@ -1,0 +1,6 @@
+---
+Name: browser-update
+---
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - DNADesign\BrowserUpdate\Extension\SiteConfigExtension

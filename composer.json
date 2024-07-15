@@ -11,6 +11,7 @@
         "php": "^8.3",
         "silverstripe/admin": "^1.0 || ^2.0",
         "silverstripe/framework": "^4.0 || ^5.0",
+        "silverstripe/siteconfig": "^4.0 || ^5.0",
         "symbiote/silverstripe-gridfieldextensions": "^3.0 || ^4.0"
     },
     "require-dev": {
@@ -22,6 +23,7 @@
         "phpstan/phpstan-strict-rules": "^1.5",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^1.0",
+        "silverstripe/standards": "^1.0",
         "slevomat/coding-standard": "^8.14",
         "symplify/easy-coding-standard": "^12.0"
     },
