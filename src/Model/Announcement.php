@@ -169,13 +169,13 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
 
         $fields = [
             ...$fields,
-            'reminder' => (string) $this->Reminder,
-            'reminderClosed' => (string) $this->ReminderClosed,
-            'test' => (string) $this->Test,
-            'newwindow' => (string) $this->NewWindow,
+            'reminder' => $this->Reminder,
+            'reminderClosed' => $this->ReminderClosed,
+            'test' => $this->Test,
+            'newwindow' => $this->NewWindow,
             'url' => $this->Url,
-            'noclose' => (string) $this->NoClose,
-            'no_permanent_hide' => (string) $this->NoPermanentHide,
+            'noclose' => $this->NoClose,
+            'no_permanent_hide' => $this->NoPermanentHide,
             'api' => self::config()->get('browser_update_api_version'),
         ];
 

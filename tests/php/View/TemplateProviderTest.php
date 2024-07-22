@@ -53,7 +53,7 @@ final class TemplateProviderTest extends SapphireTest
         );
 
         $this->assertStringContainsString(
-            '{"reminder":"24","reminderClosed":"150","test":"0","newwindow":"1","url":null,"noclose":"0","no_permanent_hide":"0","api":"2024.07","text":{"msg":"Your web browser ({brow_name}) is out of date.","msgmore":"Update your browser for more security, speed and the best experience on this site.","bupdate":"Update browser","bignore":"Ignore","remind":"You will be reminded in {days} days.","bnever":"Never show again"}}',
+            '{"reminder":24,"reminderClosed":150,"test":0,"newwindow":1,"url":null,"noclose":0,"no_permanent_hide":0,"api":"2024.07","text":{"msg":"Your web browser ({brow_name}) is out of date.","msgmore":"Update your browser for more security, speed and the best experience on this site.","bupdate":"Update browser","bignore":"Ignore","remind":"You will be reminded in {days} days.","bnever":"Never show again"}}',
             $template,
         );
     }

@@ -126,7 +126,7 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
 
         $fields = [
             'required' => [
-                $this->Browser => (string) $this->Version,
+                $this->Browser => $this->Version,
             ],
         ];
 
