@@ -7,6 +7,7 @@ use DNADesign\BrowserUpdate\Contract\BrowserUpdateInterface;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
 use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\TextField;
@@ -32,7 +33,6 @@ use SilverStripe\Security\PermissionProvider;
  * @property bool $NoClose
  * @property bool $NoMessage
  * @property bool $NoPermanentHide
- * @property int $Sort
  * @method HasManyList<BrowserVersion> BrowserVersions()
  */
 class Announcement extends DataObject implements BrowserUpdateInterface, PermissionProvider
@@ -64,7 +64,6 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
         'NoClose' => 'Boolean(0)',
         'NoMessage' => 'Boolean(0)',
         'NoPermanentHide' => 'Boolean(0)',
-        'Sort' => 'Int',
     ];
 
     /**
@@ -115,7 +114,8 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
     {
         $fields = parent::getCMSFields();
 
-        $gridFieldConfig = GridFieldConfig_RelationEditor::create();
+        $gridFieldConfig = GridFieldConfig_RelationEditor::create()
+            ->removeComponentsByType([GridFieldAddExistingAutocompleter::class]);
 
         $gridField = GridField::create(
             'BrowserVersions',
