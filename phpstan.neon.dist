@@ -12,15 +12,26 @@ parameters:
     - stubs/Psr/Container/ContainerInterface.stub
     - stubs/Psr/Container/NotFoundExceptionInterface.stub
     - stubs/SilverStripe/Core/Injector/Injector.stub
+  universalObjectCratesClasses:
+    - SilverStripe\Core\Config\Config_ForClass
+    - SilverStripe\Forms\GridField\GridState_Data
+    - SilverStripe\ORM\DataObjectInterface
+    - SilverStripe\View\ArrayData
+    - SilverStripe\View\ViewableData
+    - Symbiote\QueuedJobs\Services\AbstractQueuedJob
   ignoreErrors:
     -
+      # Ignore configuration properties
+      message: '#Static property [a-zA-Z0-9\\$\\_\\\\:\\(\\)]+ is never read, only written#'
+      identifier: property.onlyWritten
+      reportUnmatched: false
+    -
+      # Prefer dynamic calls in PHPUnit
       messages:
-        # Ignore configuration properties
-        - '#Static property .* is never read, only written#'
-        # Prefer dynamic calls in PHPUnit
         - '#Dynamic call to static method PHPUnit\\Framework\\#'
         - '#Dynamic call to static method SilverStripe\\Dev\\FunctionalTest#'
         - '#Dynamic call to static method SilverStripe\\Dev\\SapphireTest#'
+      identifier: staticMethod.dynamicCall
       reportUnmatched: false
     -
       message: "#^Parameter \\#1 \\$member of static method SilverStripe\\\\Security\\\\Permission\\:\\:checkMember\\(\\) expects int\\|SilverStripe\\\\Security\\\\Member, SilverStripe\\\\Security\\\\Member\\|null given\\.$#"
