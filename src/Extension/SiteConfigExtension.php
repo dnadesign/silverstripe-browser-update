@@ -10,7 +10,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\SiteConfig\SiteConfig;
 
 /**
- * @extends Extension<SiteConfig>
+ * @extends Extension<(SiteConfig & static)>
  *
  * @method Announcement BrowserAnnouncement()
  * @property int $BrowserAnnouncementID

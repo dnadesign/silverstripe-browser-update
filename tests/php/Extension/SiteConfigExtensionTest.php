@@ -2,6 +2,7 @@
 
 namespace DNADesign\BrowserUpdate\Tests\Extension;
 
+use Iterator;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FormField;
@@ -9,14 +10,9 @@ use SilverStripe\SiteConfig\SiteConfig;
 
 final class SiteConfigExtensionTest extends SapphireTest
 {
-    /**
-     * @return array<array{string, class-string<FormField>}>
-     */
-    public function updateCMSFieldsProvider(): array
+    public function updateCMSFieldsProvider(): Iterator
     {
-        return [
-            ['BrowserAnnouncementID', DropdownField::class],
-        ];
+        yield ['BrowserAnnouncementID', DropdownField::class];
     }
 
     /**

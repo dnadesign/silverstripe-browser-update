@@ -5,20 +5,16 @@ namespace DNADesign\BrowserUpdate\Tests\View;
 use DNADesign\BrowserUpdate\Extension\SiteConfigExtension;
 use DNADesign\BrowserUpdate\Model\Announcement;
 use DNADesign\BrowserUpdate\View\TemplateProvider;
+use Iterator;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\SSViewer;
 
 final class TemplateProviderTest extends SapphireTest
 {
-    /**
-     * @return array<array<string>>
-     */
-    public function templateGlobalVariablesProvider(): array
+    public function templateGlobalVariablesProvider(): Iterator
     {
-        return [
-            ['BrowserUpdate'],
-        ];
+        yield ['BrowserUpdate'];
     }
 
     /**
