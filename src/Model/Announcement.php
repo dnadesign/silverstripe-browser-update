@@ -33,6 +33,8 @@ use SilverStripe\Security\PermissionProvider;
  * @property bool $NoClose
  * @property bool $NoMessage
  * @property bool $NoPermanentHide
+ * @property bool $Insecure
+ * @property bool $Unsupported
  * @method HasManyList<BrowserVersion> BrowserVersions()
  */
 class Announcement extends DataObject implements BrowserUpdateInterface, PermissionProvider
@@ -64,6 +66,8 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
         'NoClose' => 'Boolean(0)',
         'NoMessage' => 'Boolean(0)',
         'NoPermanentHide' => 'Boolean(0)',
+        'Insecure' => 'Boolean(1)',
+        'Unsupported' => 'Boolean(1)',
     ];
 
     /**
@@ -152,6 +156,19 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
                 ->setDescription('Do not show a message if the browser is out of date'),
             CheckboxField::create('NoPermanentHide', 'no_permanent_hide')
                 ->setDescription('Do not give the user the option to permanently hide the notification'),
+            CheckboxField::create('Insecure', 'insecure')
+                ->setDescription(
+                    'The option "insecure: true" means that all browser that are severely insecure get notified. ' .
+                    '"Severely insecure" means that the browser has security issues that allow remote code execution and similar stuff, ' .
+                    'and that they are being actively exploited on the internet.'
+                ),
+            CheckboxField::create('Unsupported', 'unsupported')
+                ->setDescription(
+                    'The option "unsupported: true" means that additionally to the browsers you set, ' .
+                    'also all browser versions that are not supplied with updates by the vendor any more get notified. ' .
+                    'Usually this is all but the latest version of the browser. ' .
+                    'Exceptions are Internet Explorer 11 and Firefox Long term support releases, which are still supported but are not the latest version.'
+                ),
         ]);
 
         $this->extend('updateCMSFields', $fields);
@@ -177,6 +194,8 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
             'noclose' => $this->NoClose,
             'no_permanent_hide' => $this->NoPermanentHide,
             'api' => self::config()->get('browser_update_api_version'),
+            'insecure' => $this->Insecure,
+            'unsupported' => $this->Unsupported,
         ];
 
         $text = $this->getMessageConfigArray();
