@@ -16,12 +16,12 @@ use function sprintf;
 /**
  * @property string $Browser
  * @property float $Version
- * @property string $Msg
- * @property string $Msgmore
- * @property string $Bupdate
- * @property string $Bignore
- * @property string $Remind
- * @property string $Bnever
+ * @property ?string $Msg
+ * @property ?string $Msgmore
+ * @property ?string $Bupdate
+ * @property ?string $Bignore
+ * @property ?string $Remind
+ * @property ?string $Bnever
  * @property int $AnnouncementID
  * @method Announcement Announcement()
  */
@@ -79,7 +79,7 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
     {
         $fields = parent::getCMSFields();
 
-        self::removeMessageFields($fields);
+        BrowserVersion::removeMessageFields($fields);
 
         $fields->removeByName([
             'AnnouncementID',
@@ -99,11 +99,12 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
                     'If 0 is selected then the latest version of the browser required.' .
                     '</p>'
                 ),
-            self::getMessageCompositeField(),
+            BrowserVersion::getMessageCompositeField(),
         ]);
 
         $this->extend('updateCMSFields', $fields);
 
+        /** @phpstan-ignore-next-line return.type */
         return $fields;
     }
 

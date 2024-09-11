@@ -1,3 +1,5 @@
+includes:
+	- phar://phpstan.phar/conf/bleedingEdge.neon
 parameters:
   level: 9
   paths:
@@ -15,8 +17,6 @@ parameters:
   universalObjectCratesClasses:
     - SilverStripe\Core\Config\Config_ForClass
     - SilverStripe\Forms\GridField\GridState_Data
-    - SilverStripe\ORM\DataObjectInterface
-    - SilverStripe\View\ArrayData
     - SilverStripe\View\ViewableData
     - Symbiote\QueuedJobs\Services\AbstractQueuedJob
   ignoreErrors:
@@ -60,5 +60,20 @@ parameters:
 
     -
       message: "#^Access to an undefined property DNADesign\\\\BrowserUpdate\\\\Extension\\\\SiteConfigExtension\\:\\:\\$BrowserAnnouncementID\\.$#"
+      count: 1
+      path: tests/php/View/TemplateProviderTest.php
+
+    -
+      message: "#^Class DNADesign\\\\BrowserUpdate\\\\Extension\\\\SiteConfigExtension @extends tag contains unresolvable type\\.$#"
+      count: 1
+      path: src/Extension/SiteConfigExtension.php
+
+    -
+      message: "#^PHPDoc tag @var with type DNADesign\\\\BrowserUpdate\\\\Extension\\\\SiteConfigExtension is not subtype of type SilverStripe\\\\SiteConfig\\\\SiteConfig\\.$#"
+      count: 1
+      path: src/View/TemplateProvider.php
+
+    -
+      message: "#^PHPDoc tag @var with type DNADesign\\\\BrowserUpdate\\\\Extension\\\\SiteConfigExtension is not subtype of type SilverStripe\\\\SiteConfig\\\\SiteConfig\\.$#"
       count: 1
       path: tests/php/View/TemplateProviderTest.php

@@ -18,18 +18,18 @@ use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
 
 /**
- * @property string $Name
- * @property string $Msg
- * @property string $Msgmore
- * @property string $Bupdate
- * @property string $Bignore
- * @property string $Remind
- * @property string $Bnever
+ * @property ?string $Name
+ * @property ?string $Msg
+ * @property ?string $Msgmore
+ * @property ?string $Bupdate
+ * @property ?string $Bignore
+ * @property ?string $Remind
+ * @property ?string $Bnever
  * @property int $Reminder
  * @property int $ReminderClosed
  * @property bool $Test
  * @property bool $NewWindow
- * @property string $Url
+ * @property ?string $Url
  * @property bool $NoClose
  * @property bool $NoMessage
  * @property bool $NoPermanentHide
@@ -128,7 +128,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
             $gridFieldConfig
         );
 
-        self::removeMessageFields($fields);
+        Announcement::removeMessageFields($fields);
 
         $fields->removeByName([
             'Sort',
@@ -138,7 +138,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
         $fields->addFieldsToTab('Root.Main', [
             TextField::create('Name', 'Name')
                 ->setDescription('For CMS reference only.'),
-            self::getMessageCompositeField(),
+            Announcement::getMessageCompositeField(),
             $gridField,
             NumericField::create('Reminder', 'reminder')
                 ->setDescription('After how many hours should the message reappear (0 = show all the time).'),
@@ -173,6 +173,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
 
         $this->extend('updateCMSFields', $fields);
 
+        /** @phpstan-ignore-next-line return.type */
         return $fields;
     }
 
@@ -193,7 +194,7 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
             'url' => $this->Url,
             'noclose' => $this->NoClose,
             'no_permanent_hide' => $this->NoPermanentHide,
-            'api' => self::config()->get('browser_update_api_version'),
+            'api' => Announcement::config()->get('browser_update_api_version'),
             'insecure' => $this->Insecure,
             'unsupported' => $this->Unsupported,
         ];

@@ -21,7 +21,7 @@ enum Browser: string
     {
         $options = [];
 
-        foreach (self::cases() as $case) {
+        foreach (Browser::cases() as $case) {
             $options[$case->value] = $case->name;
         }
 

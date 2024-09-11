@@ -14,7 +14,7 @@
         "silverstripe/siteconfig": "^4.0 || ^5.0"
     },
     "require-dev": {
-        "cambis/silverstripe-rector": "^0.5.0",
+        "cambis/silverstripe-rector": "^0.6",
         "ergebnis/composer-normalize": "^2.42",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/extension-installer": "^1.3",
