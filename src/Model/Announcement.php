@@ -173,7 +173,6 @@ class Announcement extends DataObject implements BrowserUpdateInterface, Permiss
 
         $this->extend('updateCMSFields', $fields);
 
-        /** @phpstan-ignore-next-line return.type */
         return $fields;
     }
 
