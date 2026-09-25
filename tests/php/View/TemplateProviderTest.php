@@ -16,6 +16,11 @@ use SilverStripe\View\ViewLayerData;
 final class TemplateProviderTest extends SapphireTest
 {
     /**
+     * @var bool
+     */
+    protected $usesDatabase = true;
+
+    /**
      * @return Iterator<int, array{string}>
      */
     public static function templateGlobalVariablesProvider(): Iterator
@@ -49,6 +54,7 @@ final class TemplateProviderTest extends SapphireTest
 
         $siteConfig = SiteConfig::current_site_config();
         $siteConfig->BrowserAnnouncementID = $announcement->ID;
+        $siteConfig->write();
 
         $template = SSTemplateEngine::create()->renderString(
             '{$BrowserUpdate}',

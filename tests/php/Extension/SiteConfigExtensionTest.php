@@ -14,6 +14,11 @@ use SilverStripe\SiteConfig\SiteConfig;
 final class SiteConfigExtensionTest extends SapphireTest
 {
     /**
+     * @var bool
+     */
+    protected $usesDatabase = true;
+
+    /**
      * @return Iterator<int, array{string, class-string<FormField>}>
      */
     public static function updateCMSFieldsProvider(): Iterator
