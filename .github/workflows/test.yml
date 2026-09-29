@@ -37,7 +37,7 @@ jobs:
 
       - uses: ramsey/composer-install@v2
 
-      - run: vendor/bin/sake dev/build flush=1
+      - run: vendor/bin/sake db:build --flush
         env:
           SS_DATABASE_SERVER: 127.0.0.1
           SS_DATABASE_NAME: SS_mysite
