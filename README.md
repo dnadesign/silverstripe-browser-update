@@ -13,7 +13,7 @@ composer require dnadesign/silverstripe-browser-update
 Rebuild your application.
 
 ```sh
-vendor/bin/sake dev/build flush=1
+vendor/bin/sake db:build --flush
 ```
 
 ## Configuration 🚧

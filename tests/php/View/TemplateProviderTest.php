@@ -1,25 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNADesign\BrowserUpdate\Tests\View;
 
-use DNADesign\BrowserUpdate\Extension\SiteConfigExtension;
 use DNADesign\BrowserUpdate\Model\Announcement;
 use DNADesign\BrowserUpdate\View\TemplateProvider;
 use Iterator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\SiteConfig\SiteConfig;
-use SilverStripe\View\SSViewer;
+use SilverStripe\TemplateEngine\SSTemplateEngine;
+use SilverStripe\View\ViewLayerData;
 
 final class TemplateProviderTest extends SapphireTest
 {
-    public function templateGlobalVariablesProvider(): Iterator
+    // Silverstripe expects subclasses to enable database access using this inherited property.
+    // @phpstan-ignore property.phpDocType
+    protected $usesDatabase = true;
+
+    /**
+     * @return Iterator<int, array{string}>
+     */
+    public static function templateGlobalVariablesProvider(): Iterator
     {
         yield ['BrowserUpdate'];
     }
 
-    /**
-     * @dataProvider templateGlobalVariablesProvider
-     */
+    #[DataProvider('templateGlobalVariablesProvider')]
     public function testTemplateGlobalVariables(string $key): void
     {
         $this->assertArrayHasKey(
@@ -30,9 +38,9 @@ final class TemplateProviderTest extends SapphireTest
 
     public function testBrowserUpdateNoAnnouncements(): void
     {
-        $template = SSViewer::execute_string(
+        $template = SSTemplateEngine::create()->renderString(
             '{$BrowserUpdate}',
-            ''
+            ViewLayerData::create([])
         );
 
         $this->assertEmpty($template);
@@ -43,13 +51,13 @@ final class TemplateProviderTest extends SapphireTest
         $announcement = Announcement::create();
         $announcement->write();
 
-        /** @var SiteConfigExtension $siteConfig */
         $siteConfig = SiteConfig::current_site_config();
         $siteConfig->BrowserAnnouncementID = $announcement->ID;
+        $siteConfig->write();
 
-        $template = SSViewer::execute_string(
+        $template = SSTemplateEngine::create()->renderString(
             '{$BrowserUpdate}',
-            ''
+            ViewLayerData::create([])
         );
 
         $this->assertStringContainsString(

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNADesign\BrowserUpdate\Admin;
 
 use DNADesign\BrowserUpdate\Model\Announcement;

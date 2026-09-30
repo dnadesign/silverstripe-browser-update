@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-use Cambis\SilverstripeRector\Set\ValueObject\SilverstripeLevelSetList;
 use Cambis\SilverstripeRector\Set\ValueObject\SilverstripeSetList;
+use Netwerkstatt\SilverstripeRector\Set\SilverstripeLevelSetList;
 use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php83\Rector\ClassConst\AddTypeToConstRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
-use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
 return RectorConfig::configure()
@@ -19,16 +18,16 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
+    ->withComposerBased(phpunit: true)
+    ->withPhpSets()
     ->withSets([
-        LevelSetList::UP_TO_PHP_83,
-        SilverstripeLevelSetList::UP_TO_SILVERSTRIPE_52,
+        SilverstripeLevelSetList::UP_TO_SS_6_2,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
         SetList::PRIVATIZATION,
         SilverstripeSetList::CODE_QUALITY,
-        PHPUnitSetList::PHPUNIT_90,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
     ])->withSkip([
         ClosureToArrowFunctionRector::class,
