@@ -14,7 +14,8 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Pinning Ubuntu 24.04 removes the migration notice and prevents an unexpected switch to Ubuntu 26
+    runs-on: ubuntu-24.04
 
     services:
       mysql:
@@ -28,14 +29,16 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
-      - uses: actions/checkout@v3
+      # Updating to checkout@v6 removes warning: Node.js 20 is deprecated
+      - uses: actions/checkout@v6
 
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: 8.4
           coverage: none
 
-      - uses: ramsey/composer-install@v2
+      # Updating to composer-install@v4 removes warning: Node.js 20 is deprecated
+      - uses: ramsey/composer-install@v4
 
       - run: vendor/bin/sake db:build --flush
         env:
