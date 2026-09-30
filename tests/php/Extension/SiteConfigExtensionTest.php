@@ -13,9 +13,8 @@ use SilverStripe\SiteConfig\SiteConfig;
 
 final class SiteConfigExtensionTest extends SapphireTest
 {
-    /**
-     * @var bool
-     */
+    // Silverstripe expects subclasses to enable database access using this inherited property.
+    // @phpstan-ignore property.phpDocType
     protected $usesDatabase = true;
 
     /**
