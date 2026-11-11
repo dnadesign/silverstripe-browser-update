@@ -1,6 +1,6 @@
 {
   "name": "@dnadesign/silverstripe-browser-update",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
