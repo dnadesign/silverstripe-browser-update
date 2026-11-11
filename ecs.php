@@ -6,7 +6,6 @@ use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
 use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
 use SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
-use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return ECSConfig::configure()
     ->withPaths([
@@ -21,10 +20,10 @@ return ECSConfig::configure()
             'allowFallbackGlobalConstants' => false,
         ]
     )
-    ->withSets([
-        SetList::COMMON,
-        SetList::PSR_12,
-    ])
+    ->withPreparedSets(
+        psr12: true,
+        common: true,
+    )
     ->withSkip([
         NotOperatorWithSuccessorSpaceFixer::class,
         // See: https://github.com/silverstripe/silverstripe-standards/issues/8

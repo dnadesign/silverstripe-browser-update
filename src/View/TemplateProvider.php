@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNADesign\BrowserUpdate\View;
 
-use DNADesign\BrowserUpdate\Extension\SiteConfigExtension;
 use JsonException;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\TemplateGlobalProvider;
@@ -30,7 +31,6 @@ class TemplateProvider implements TemplateGlobalProvider
 
     public static function getBrowserUpdate(): string
     {
-        /** @var SiteConfigExtension $siteConfig */
         $siteConfig = SiteConfig::current_site_config();
         $announcement = $siteConfig->BrowserAnnouncement();
 
@@ -45,14 +45,14 @@ class TemplateProvider implements TemplateGlobalProvider
         }
 
         return sprintf(<<<'HTML'
-<script> 
-    var $buoop = JSON.parse('%s'); 
-    
-    function $buo_f() { 
-        var e = document.createElement("script"); 
-        e.src = "//browser-update.org/update.min.js"; 
+<script>
+    var $buoop = JSON.parse('%s');
+
+    function $buo_f() {
+        var e = document.createElement("script");
+        e.src = "//browser-update.org/update.min.js";
         document.body.appendChild(e);
-    };
+    }
 
     try {
         document.addEventListener("DOMContentLoaded", $buo_f, false);
@@ -61,6 +61,7 @@ class TemplateProvider implements TemplateGlobalProvider
         window.attachEvent("onload", $buo_f);
     }
 </script>
-HTML, $browserUpdateConfig);
+HTML
+            , $browserUpdateConfig);
     }
 }

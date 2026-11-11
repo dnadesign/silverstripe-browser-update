@@ -5,11 +5,11 @@ namespace DNADesign\BrowserUpdate\Model;
 use DNADesign\BrowserUpdate\Concern\MessageFields;
 use DNADesign\BrowserUpdate\Contract\BrowserUpdateInterface;
 use DNADesign\BrowserUpdate\Enum\Browser;
-use SilverStripe\Forms\CompositeValidator;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\NumericField;
-use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\Validation\CompositeValidator;
+use SilverStripe\Forms\Validation\RequiredFieldsValidator;
 use SilverStripe\ORM\DataObject;
 use function sprintf;
 
@@ -104,7 +104,6 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
 
         $this->extend('updateCMSFields', $fields);
 
-        /** @phpstan-ignore-next-line return.type */
         return $fields;
     }
 
@@ -112,7 +111,7 @@ class BrowserVersion extends DataObject implements BrowserUpdateInterface
     {
         $validator = parent::getCMSCompositeValidator();
 
-        $validator->addValidator(RequiredFields::create([
+        $validator->addValidator(RequiredFieldsValidator::create([
             'Browser',
             'Version',
         ]));

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNADesign\BrowserUpdate\Extension;
 
 use DNADesign\BrowserUpdate\Model\Announcement;
@@ -10,7 +12,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\SiteConfig\SiteConfig;
 
 /**
- * @extends Extension<(SiteConfig & static)>
+ * @extends Extension<(SiteConfig)>
  *
  * @method Announcement BrowserAnnouncement()
  * @property int $BrowserAnnouncementID
