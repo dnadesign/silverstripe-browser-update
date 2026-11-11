@@ -16,6 +16,9 @@ jobs:
   test:
     # Pinning Ubuntu 24.04 removes the migration notice and prevents an unexpected switch to Ubuntu 26
     runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        php-version: ['8.3', '8.4']
 
     services:
       mysql:
@@ -34,7 +37,7 @@ jobs:
 
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.4
+          php-version: ${{ matrix.php-version }}
           coverage: none
 
       # Updating to composer-install@v4 removes warning: Node.js 20 is deprecated
